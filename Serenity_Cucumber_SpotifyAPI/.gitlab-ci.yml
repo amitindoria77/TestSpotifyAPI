@@ -20,4 +20,4 @@ build:
 test:
   stage: test
   script:
-    - mvn test -Dtest=cucumber.testrunner.CucumberTestSuite
+    - mvn test -Dtest=cucumber.testrunner.CucumberTestSuite.java
