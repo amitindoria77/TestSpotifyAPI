@@ -1,7 +1,6 @@
 image: amitaarya17/docker-maven-chrome:jdk-8
 
 stages:
-  - build
   - test
 
 variables:
@@ -11,11 +10,6 @@ cache:
   paths:
     - .m2/repository/
     - target/
-
-build:
-  stage: build
-  script:
-    - mvn compile
 
 test:
   stage: test
