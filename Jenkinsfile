@@ -3,11 +3,11 @@ node {
 		git "https://github.com/amitindoria77/TestSpotifyAPI.git"
 		}
 	stage ('Build'){
-    	dir("comtest") {
+    	dir("Serenity_Cucumber_SpotifyAPI") {
 	   sh "mvn clean install"
        }
-       	dir("comtest/target") {
-	   sh "java -jar com.test-1.0-SNAPSHOT.jar"
+       	dir("Serenity_Cucumber_SpotifyAPI/target") {
+	   sh "java -jar Serenity_Cucumber_SpotifyAPI-1.0-SNAPSHOT.jar"
        }
 		}
 }
