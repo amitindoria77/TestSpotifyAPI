@@ -4,11 +4,11 @@ node {
 
  // set up Java:
    
-    env.JAVA_HOME="C:\Program Files\Java\jdk1.8.0_291"
+    env.JAVA_HOME="C:/Program Files/Java/jdk1.8.0_291"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
  // set up Maven:
    
-    env.M2_HOME  = "C:\apache-maven-3.8.1"
+    env.M2_HOME  = "C:/apache-maven-3.8.1"
     def mvn_home = tool "maven-3.8"
  // execute tests and produce reports:
    
