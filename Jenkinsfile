@@ -1,16 +1,27 @@
 node {
-	stage ('SCM checkout'){
-		git "https://github.com/amitindoria77/TestSpotifyAPI.git"
-		mvnHome = tool 'M3'
-		}
-	stage ('Build'){
-    	dir("Serenity_Cucumber_SpotifyAPI") {
-		bat (/"${mvnHome}/bin/mvn" clean package/"
-       }
-	stage ('Results')
-       	dir("Serenity_Cucumber_SpotifyAPI/target") {
-	   junit '**/target/surefire-reports/Test-*.xml'
-           archive  'target/*.jar'
-       }
-		}
+
+    git url: 'https://github.com/amitindoria77/TestSpotifyAPI.git', branch: 'master'
+
+ // set up Java:
+   
+    env.JAVA_HOME="C:\Program Files\Java\jdk1.8.0_291"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+ // set up Maven:
+   
+    env.M2_HOME  = "C:\apache-maven-3.8.1"
+    def mvn_home = tool "maven-3.8"
+ // execute tests and produce reports:
+   
+    sh "${mvn_home}/bin/mvn -B -e -q clean verify"
+ // publish the Serenity report
+   
+    publishHTML(target: [
+        reportName : 'Serenity',
+        reportDir:   'target/site/serenity',
+        reportFiles: 'index.html',
+        keepAll:     true,
+        alwaysLinkToLastBuild: true,
+        allowMissing: false
+    ])
 }
+
